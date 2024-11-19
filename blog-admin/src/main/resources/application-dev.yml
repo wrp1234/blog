@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://127.0.0.1:5432/blog
+    username: postgres
+    password: 123456
+
+auth:
+  jwt:
+    # 设置jwt签名加密时使用的秘钥   HMAC-SHA算法32字节
+    secret-key: wejr8293nhgNDCVe98utnj83iomdfvghu8ghbnwe4tg34
+    # 设置jwt过期时间 毫秒 30天
+    ttl: 2592000000

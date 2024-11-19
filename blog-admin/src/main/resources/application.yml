@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: blog-admin
+  profiles:
+    active: dev
+
+mybatis-plus:
+  #  type-handlers-package: com.wrp.blog.typeHandler
+  global-config:
+    db-config:
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+# url\u767D\u540D\u5355
+url:
+  excludes:
+    - /user/register
+    - /user/login/pwd
+    - /user/login/phone
