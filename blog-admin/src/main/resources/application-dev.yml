@@ -11,3 +11,6 @@ auth:
     secret-key: wejr8293nhgNDCVe98utnj83iomdfvghu8ghbnwe4tg34
     # 设置jwt过期时间 毫秒 30天
     ttl: 2592000000
+
+store:
+  path: D:\store\blog

@@ -1,3 +1,18 @@
+-- 创建文件表
+CREATE TABLE IF NOT EXISTS public.file
+(
+    id bigserial,
+    create_time timestamp without time zone NOT NULL DEFAULT now(),
+    update_time timestamp without time zone NOT NULL DEFAULT now(),
+    deleted smallint NOT NULL DEFAULT 0,
+    user_id bigint NOT NULL,
+    url character varying  NOT NULL,
+    file_name character varying  NOT NULL,
+    size bigint NOT NULL,
+    type smallint NOT NULL,
+    CONSTRAINT file_pkey PRIMARY KEY (id)
+);
+
 -- 创建用户表
 CREATE TABLE IF NOT EXISTS public.b_user
 (
