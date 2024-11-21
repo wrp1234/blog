@@ -4,7 +4,11 @@ spring:
     url: jdbc:postgresql://127.0.0.1:5432/blog
     username: postgres
     password: 123456
-
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password: redis123456
 auth:
   jwt:
     # 设置jwt签名加密时使用的秘钥   HMAC-SHA算法32字节

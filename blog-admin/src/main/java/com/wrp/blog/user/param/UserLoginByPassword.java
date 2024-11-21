@@ -10,4 +10,6 @@ import lombok.Data;
 public class UserLoginByPassword {
     private String username;
     private String password;
+    private String key;
+    private String code;
 }

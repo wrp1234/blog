@@ -12,9 +12,15 @@ mybatis-plus:
       logic-delete-value: 1
       logic-not-delete-value: 0
 
-# url\u767D\u540D\u5355
+# url白名单
 url:
   excludes:
     - /user/register
     - /user/login/pwd
     - /user/login/phone
+
+redis:
+  captcha:
+    key-prefix: 'captcha:'
+    # 5分钟
+    ttl: 300

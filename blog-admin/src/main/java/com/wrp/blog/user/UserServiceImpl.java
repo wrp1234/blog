@@ -2,6 +2,7 @@ package com.wrp.blog.user;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.wrp.blog.api.CaptchaService;
 import com.wrp.blog.common.dict.ResultCode;
 import com.wrp.blog.common.exception.UserException;
 import com.wrp.blog.common.utils.jwt.JwtUtils;
@@ -23,6 +24,8 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> implements UserService {
 
     private JwtUtils jwtUtils;
+    private CaptchaService captchaService;
+
 
     @Override
     public Long register(UserRegister userRegister) {
@@ -44,7 +47,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
 
     @Override
     public UserInfo login(UserLoginByPassword userLoginByPassword) {
-        // TODO 验证码校验
+        captchaService.verify(userLoginByPassword.getKey(), userLoginByPassword.getCode());
         UserEntity userEntity = getOne(new LambdaQueryWrapper<UserEntity>()
                 .eq(UserEntity::getUsername, userLoginByPassword.getUsername())
                 .eq(UserEntity::getPassword, userLoginByPassword.getPassword()));
