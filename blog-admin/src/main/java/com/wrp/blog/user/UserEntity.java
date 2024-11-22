@@ -8,6 +8,7 @@ import lombok.EqualsAndHashCode;
 import java.time.LocalDate;
 
 /**
+ * 用户
  * @author wrp
  * @since 2024-11-19 21:20
  **/
@@ -23,5 +24,5 @@ public class UserEntity extends BaseEntity {
      * 自我介绍
      */
     private String introduction;
-    private Long photo;
+    private Long photoId;
 }

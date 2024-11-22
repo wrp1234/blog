@@ -19,5 +19,5 @@ public class UserRegister {
     private String phone;
     private LocalDate birthday;
     private String introduction;
-    private Long photo;
+    private Long photoId;
 }

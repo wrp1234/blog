@@ -1,6 +1,5 @@
 package com.wrp.blog.user.param;
 
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -13,5 +12,5 @@ import java.time.LocalDate;
 public class UpdateUser {
     private LocalDate birthday;
     private String introduction;
-    private Long photo;
+    private Long photoId;
 }
