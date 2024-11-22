@@ -1,4 +1,4 @@
-package com.wrp.blog.api;
+package com.wrp.blog.api.captcha;
 
 import jakarta.servlet.http.HttpServletResponse;
 

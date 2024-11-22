@@ -2,6 +2,7 @@ package com.wrp.blog.user;
 
 import com.wrp.blog.common.result.Result;
 import com.wrp.blog.common.result.ResultUtils;
+import com.wrp.blog.user.param.UpdateUser;
 import com.wrp.blog.user.param.UserLoginByPassword;
 import com.wrp.blog.user.param.UserLoginByPhone;
 import com.wrp.blog.user.param.UserRegister;
@@ -39,6 +40,12 @@ public class UserController {
     @GetMapping("detail")
     public Result<UserEntity> detail() {
         return ResultUtils.success(userService.userDetail());
+    }
+
+    @PutMapping
+    public Result<Void> updateOptionInfo(@RequestBody @Validated UpdateUser updateUser) {
+        userService.updateOptionInfo(updateUser);
+        return ResultUtils.success();
     }
 
 }

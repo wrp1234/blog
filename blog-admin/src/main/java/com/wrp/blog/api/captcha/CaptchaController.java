@@ -1,6 +1,5 @@
-package com.wrp.blog.api;
+package com.wrp.blog.api.captcha;
 
-import cn.hutool.core.lang.UUID;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,9 +21,5 @@ public class CaptchaController {
     @GetMapping
     public void getCaptcha(@RequestParam("k") String key, HttpServletResponse response) {
         captchaService.generateCaptcha(key, response);
-    }
-
-    public static void main(String[] args) {
-        System.out.println();
     }
 }

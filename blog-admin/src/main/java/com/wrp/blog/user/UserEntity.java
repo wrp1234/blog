@@ -23,5 +23,5 @@ public class UserEntity extends BaseEntity {
      * 自我介绍
      */
     private String introduction;
-    private String photo;
+    private Long photo;
 }

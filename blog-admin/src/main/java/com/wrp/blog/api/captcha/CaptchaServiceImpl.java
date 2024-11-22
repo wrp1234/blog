@@ -1,4 +1,4 @@
-package com.wrp.blog.api;
+package com.wrp.blog.api.captcha;
 
 import cn.hutool.captcha.CaptchaUtil;
 import cn.hutool.captcha.LineCaptcha;

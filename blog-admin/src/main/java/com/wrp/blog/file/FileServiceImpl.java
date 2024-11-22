@@ -44,7 +44,7 @@ public class FileServiceImpl extends ServiceImpl<FileMapper, FileEntity> impleme
     public Long upload(MultipartFile file) {
         FileEntity entity = new FileEntity()
                 .setFileName(file.getOriginalFilename())
-                .setUrl(LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd")) + File.separator + UUID.randomUUID())
+                .setUrl(LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy\\MM\\dd")) + File.separator + UUID.randomUUID())
                 .setSize(file.getSize())
                 .setUserId(UserInfoContext.get().getId());
         doUpload(file, entity.getUrl());
@@ -80,11 +80,16 @@ public class FileServiceImpl extends ServiceImpl<FileMapper, FileEntity> impleme
         if(!Files.exists(path)) {
             try {
                 Files.createDirectories(path);
-                Files.copy(file.getInputStream(), Paths.get(store, relativePath));
             } catch (IOException e) {
-                log.error("文件上传失败，{}", e.getMessage(), e);
-                throw FileException.of(ResultCode.IO_ERROR);
+                throw new RuntimeException(e);
             }
+        }
+
+        try(InputStream is = file.getInputStream()) {
+            Files.copy(is, Paths.get(store, relativePath));
+        } catch (IOException e) {
+            log.error("文件上传失败，{}", e.getMessage(), e);
+            throw FileException.of(ResultCode.IO_ERROR);
         }
     }
 }

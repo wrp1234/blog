@@ -1,5 +1,7 @@
 package com.wrp.blog.common.dict;
 
+import com.baomidou.mybatisplus.annotation.EnumValue;
+import com.fasterxml.jackson.annotation.JsonValue;
 import com.wrp.blog.common.exception.FileException;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,6 +18,9 @@ public enum FileType implements BaseEnum {
     JPG(1, "FFD8FF","JPG"),
     PNG(2, "89504E47","PNG"),
     ;
+
+    @EnumValue
+    @JsonValue
     private final int code;
     private final String prefixByte;
     private final String description;

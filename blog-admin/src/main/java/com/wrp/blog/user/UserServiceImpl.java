@@ -2,10 +2,11 @@ package com.wrp.blog.user;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.wrp.blog.api.CaptchaService;
+import com.wrp.blog.api.captcha.CaptchaService;
 import com.wrp.blog.common.dict.ResultCode;
 import com.wrp.blog.common.exception.UserException;
 import com.wrp.blog.common.utils.jwt.JwtUtils;
+import com.wrp.blog.user.param.UpdateUser;
 import com.wrp.blog.user.param.UserLoginByPassword;
 import com.wrp.blog.user.param.UserLoginByPhone;
 import com.wrp.blog.user.param.UserRegister;
@@ -73,5 +74,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
     @Override
     public UserEntity userDetail() {
         return getById(UserInfoContext.get().getId());
+    }
+
+    @Override
+    public void updateOptionInfo(UpdateUser updateUser) {
+        UserEntity entity = getById(UserInfoContext.get().getId());
+        BeanUtils.copyProperties(updateUser, entity);
+        updateById(entity);
     }
 }
