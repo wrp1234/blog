@@ -24,6 +24,7 @@ public enum ResultCode implements BaseEnum {
     MISS_TOKEN(99002, "miss token"),
     INVALID_TOKEN(99003, "invalid token"),
     INVALID_CAPTCHA(99004, "验证码错误"),
+    ARGS_ERROR(99005, "参数有误"),
     ERROR(99999, "服务内部异常"),
     ;
     private final int code;

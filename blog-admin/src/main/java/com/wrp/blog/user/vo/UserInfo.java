@@ -14,5 +14,6 @@ public class UserInfo {
     @JsonFormat(shape = JsonFormat.Shape.STRING)
     private Long id;
     private String username;
+    private Long photoId;
     private String token;
 }

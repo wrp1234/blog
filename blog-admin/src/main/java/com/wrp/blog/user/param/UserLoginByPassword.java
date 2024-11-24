@@ -1,5 +1,6 @@
 package com.wrp.blog.user.param;
 
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 
 /**
@@ -8,6 +9,7 @@ import lombok.Data;
  **/
 @Data
 public class UserLoginByPassword {
+    @NotEmpty(message = "请填写用户名")
     private String username;
     private String password;
     private String key;
