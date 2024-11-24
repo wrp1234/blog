@@ -18,6 +18,7 @@ url:
     - /user/register
     - /user/login/pwd
     - /user/login/phone
+    - /captcha
 
 redis:
   captcha:

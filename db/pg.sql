@@ -40,3 +40,33 @@ CREATE UNIQUE INDEX IF NOT EXISTS b_user_username_idx
     (username COLLATE pg_catalog."default" ASC NULLS LAST)
     WITH (deduplicate_items=True)
     TABLESPACE pg_default;
+
+-- 创建博客
+CREATE TABLE IF NOT EXISTS public.article
+(
+    id bigserial,
+    create_time timestamp without time zone NOT NULL DEFAULT now(),
+    update_time timestamp without time zone NOT NULL DEFAULT now(),
+    deleted smallint NOT NULL DEFAULT 0,
+    user_id bigint NOT NULL,
+    catalog_id bigint NOT NULL,
+    photo_id bigint NOT NULL,
+    title character varying  NOT NULL,
+    abstract_content character varying  NOT NULL,
+    content text NOT NULL,
+    CONSTRAINT article_pkey PRIMARY KEY (id)
+);
+
+-- 创建目录表
+CREATE TABLE IF NOT EXISTS public.catalog
+(
+    id bigserial,
+    create_time timestamp without time zone NOT NULL DEFAULT now(),
+    update_time timestamp without time zone NOT NULL DEFAULT now(),
+    deleted smallint NOT NULL DEFAULT 0,
+    user_id bigint NOT NULL,
+    name character varying  NOT NULL,
+    description character varying  NOT NULL,
+    article_count int NOT NULL,
+    CONSTRAINT catalog_pkey PRIMARY KEY (id)
+);
