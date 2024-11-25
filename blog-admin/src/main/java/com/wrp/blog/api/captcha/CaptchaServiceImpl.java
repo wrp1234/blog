@@ -29,7 +29,7 @@ public class CaptchaServiceImpl implements CaptchaService {
     public void generateCaptcha(String key, HttpServletResponse response) {
         LineCaptcha captcha = CaptchaUtil.createLineCaptcha(
                 200, 100, 4, 30);
-        String code = captcha.getCode();
+        String code = captcha.getCode().toLowerCase();
         redisTemplate.opsForValue().set(captchaProperties.getKeyPrefix() + key, code,
                 captchaProperties.getTtl(), TimeUnit.SECONDS);
         try {
@@ -43,7 +43,7 @@ public class CaptchaServiceImpl implements CaptchaService {
     @Override
     public void verify(String key, String code) {
         Object c = redisTemplate.opsForValue().get(captchaProperties.getKeyPrefix() + key);
-        if (c == null || !c.equals(code)) {
+        if (c == null || !c.equals(code.toLowerCase())) {
             throw SystemException.of(ResultCode.INVALID_CAPTCHA);
         }
     }
