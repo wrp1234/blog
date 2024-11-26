@@ -5,18 +5,29 @@ import Login from './components/Login.vue'
 </script>
 
 <template>
-  <div class="common-layout">
-    <el-container>
-      <el-header>
-        <Nav />
-      </el-header>
-      <el-main>
-        <RouterView />
-      </el-main>
-    </el-container>
+  <Nav />
+  <div class="main-container">
+    <div class="main-left"></div>
+    <div class="main-center">
+
+    </div>
+    <div class="main-right"></div>
   </div>
   <Register />
   <Login />
 </template>
 
-<style scoped></style>
+<style scoped>
+.main-container {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  background-color: rgb(233, 232, 232);
+
+}
+
+
+.main-center {
+  background-color: white;
+}
+</style>

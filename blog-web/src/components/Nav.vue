@@ -5,16 +5,18 @@
 -->
 <template>
     <div class="nav-container">
-        <img src="../assets/vue.svg" alt="">
-        <ul class="nav-list">
-            <li><router-link to="/">博客</router-link></li>
-            <li><router-link to="/">项目</router-link></li>
-            <li><router-link to="/">简历</router-link></li>
-        </ul>
+        <div class="nav-left nav-item">
+            <img src="../assets/vue.svg" alt="">
+        </div>
+        <div class="nav-center nav-item">
+            <div><router-link to="/">博客</router-link></div>
+            <div><router-link to="/">项目</router-link></div>
+            <div><router-link to="/">简历</router-link></div>
+        </div>
 
-        <div class="operation">
-            <el-button type="primary" @click="navStore.changeLoginDialogStatus">登录</el-button>
-            <el-button type="primary" @click="navStore.changeRegisterDialogStatus">注册</el-button>
+        <div class="nav-right nav-item">
+            <el-button size="large" type="primary" @click="navStore.changeLoginDialogStatus">登录</el-button>
+            <el-button size="large" type="primary" @click="navStore.changeRegisterDialogStatus">注册</el-button>
         </div>
 
     </div>
@@ -29,30 +31,31 @@ const navStore = useNavStore()
 
 <style scoped>
 .nav-container {
-    position: fixed;
-    top: 0;
+    position: sticky;
+    top: 0%;
     height: 50px;
-    width: 100%;
-    background-color: green;
-    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    font-size: 22px;
+    color: black;
+    background-color: white;
+    border-bottom: 1px solid black;
 }
 
-.nav-list {
-    margin: 0;
-    display: inline-block;
-    font-size: 36px;
+.nav-item {
+    display: flex;
+    /* 水平居中 */
+    justify-content: center;
+    /* 垂直居中 */
+    align-items: center;
+    text-align: center;
 }
 
-.nav-list li {
-    display: inline-block;
+.nav-center>div {
     width: 100px;
-    margin-left: 20px;
 }
 
-.operation {
-    display: inline;
-    height: 50px;
-    position: fixed;
-    right: 30px;
+.nav-center>div:hover {
+    cursor: pointer;
 }
 </style>
