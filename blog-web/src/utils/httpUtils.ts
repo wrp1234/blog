@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { ElMessage } from "element-plus";
 import { Result, UserInfo } from "../types";
-
+import config from "../config";
 
 
 // console.log('import.meta.env: ', import.meta.env);
@@ -10,14 +10,14 @@ import { Result, UserInfo } from "../types";
 let httpUtils: AxiosInstance | any;
 if (import.meta.env.MODE === "development") {
     httpUtils = axios.create({
-        baseURL: 'http://localhost:8080', // api 的 base_url
-        timeout: 1000 // 请求超时时间
+        baseURL: config.baseUrl, // api 的 base_url
+        timeout: 2000 // 请求超时时间
     });
 } else {
     // 生产环境下
     httpUtils = axios.create({
-        baseURL: "http://localhost:8080",
-        timeout: 1000
+        baseURL: config.baseUrl,
+        timeout: 2000
     });
 }
 
@@ -54,6 +54,7 @@ httpUtils.interceptors.response.use(
                     message: data.message,
                     type: "error"
                 });
+                return Promise.reject(new Error(data.message || "Error"));
             }
         } else {
             ElMessage({

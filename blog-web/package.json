@@ -9,9 +9,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/marked": "^6.0.0",
     "@types/node": "^22.9.3",
     "axios": "^1.7.7",
     "element-plus": "^2.8.8",
+    "highlight.js": "^11.11.0",
+    "marked": "^15.0.4",
+    "marked-highlight": "^2.2.1",
     "pinia": "^2.2.6",
     "vue": "^3.5.12",
     "vue-router": "4"

@@ -1,7 +1,7 @@
 package com.wrp.blog.file;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.wrp.blog.common.config.BaseEntity;
+import com.wrp.blog.common.BaseEntity;
 import com.wrp.blog.common.dict.FileType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

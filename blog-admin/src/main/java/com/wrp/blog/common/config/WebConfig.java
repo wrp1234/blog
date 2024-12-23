@@ -24,9 +24,11 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(userInterceptor).addPathPatterns("/**")
-                .excludePathPatterns(urlProperties.getExcludes());
+//        registry.addInterceptor(userInterceptor).addPathPatterns("/**")
+//                .excludePathPatterns(urlProperties.getExcludes());
     }
+
+
 
     static final String[] ORIGINS = new String[] { "GET", "POST", "PUT", "DELETE" };
     @Override

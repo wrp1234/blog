@@ -1,4 +1,4 @@
-package com.wrp.blog.common.config;
+package com.wrp.blog.common;
 
 import com.baomidou.mybatisplus.annotation.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
