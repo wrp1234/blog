@@ -3,6 +3,8 @@ package com.wrp.blog.common;
 import com.baomidou.mybatisplus.annotation.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.wrp.blog.common.valid.annotaion.UpdateGroup;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -13,6 +15,7 @@ import java.time.LocalDateTime;
  **/
 @Data
 public class BaseEntity {
+    @NotNull(groups = UpdateGroup.class)
     @JsonFormat(shape = JsonFormat.Shape.STRING)
     @TableId(type = IdType.ASSIGN_ID)
     private Long id;

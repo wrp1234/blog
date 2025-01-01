@@ -1,5 +1,7 @@
 package com.wrp.blog.common.dict;
 
+import com.baomidou.mybatisplus.annotation.EnumValue;
+import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -27,6 +29,9 @@ public enum ResultCode implements BaseEnum {
     ARGS_ERROR(99005, "参数有误"),
     ERROR(99999, "服务内部异常"),
     ;
+
+    @EnumValue
+    @JsonValue
     private final int code;
     private final String description;
 }
