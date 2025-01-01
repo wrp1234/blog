@@ -5,33 +5,40 @@ import cn.hutool.captcha.LineCaptcha;
 import com.wrp.blog.common.dict.ResultCode;
 import com.wrp.blog.common.exception.SystemException;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.AllArgsConstructor;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author wrp
  * @since 2024-11-21 22:36
  **/
 @Service
-@AllArgsConstructor
 public class CaptchaServiceImpl implements CaptchaService {
 
-    private RedisTemplate<String, Object> redisTemplate;
-    private CaptchaProperties captchaProperties;
+    private final CaptchaProperties captchaProperties;
+    // TODO
+    private final Map<String, String> cache = new HashMap<>();
 
+    public CaptchaServiceImpl(CaptchaProperties captchaProperties) {
+        this.captchaProperties = captchaProperties;
+    }
 
     @Override
     public void generateCaptcha(String key, HttpServletResponse response) {
         LineCaptcha captcha = CaptchaUtil.createLineCaptcha(
                 200, 100, 4, 30);
         String code = captcha.getCode().toLowerCase();
-        redisTemplate.opsForValue().set(captchaProperties.getKeyPrefix() + key, code,
-                captchaProperties.getTtl(), TimeUnit.SECONDS);
+        synchronized (cache) {
+            if(cache.keySet().size() > 128) {
+                cache.clear();
+            }
+            cache.put(captchaProperties.getKeyPrefix() + key, code);
+        }
+
         try {
             response.setContentType(MediaType.IMAGE_JPEG_VALUE);
             captcha.write(response.getOutputStream());
@@ -42,9 +49,13 @@ public class CaptchaServiceImpl implements CaptchaService {
 
     @Override
     public void verify(String key, String code) {
-        Object c = redisTemplate.opsForValue().get(captchaProperties.getKeyPrefix() + key);
-        if (c == null || !c.equals(code.toLowerCase())) {
-            throw SystemException.of(ResultCode.INVALID_CAPTCHA);
+        String k = captchaProperties.getKeyPrefix() + key;
+        synchronized (cache) {
+            Object c = cache.get(k);
+            if (c == null || !c.equals(code.toLowerCase())) {
+                throw SystemException.of(ResultCode.INVALID_CAPTCHA);
+            }
+            cache.remove(k);
         }
     }
 }

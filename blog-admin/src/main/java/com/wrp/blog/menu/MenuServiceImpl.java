@@ -20,7 +20,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, MenuEntity> impleme
     @Override
     public List<MenuEntity> listWithChildren() {
         List<MenuEntity> list = list(new LambdaQueryWrapper<MenuEntity>()
-                .orderByDesc(MenuEntity::getOrder));
+                .orderByDesc(MenuEntity::getSort));
         Map<Long, MenuEntity> map = list.stream()
                 .collect(Collectors.toMap(MenuEntity::getId, e -> e));
         list.forEach(m -> {

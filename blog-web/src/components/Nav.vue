@@ -6,12 +6,10 @@
 <template>
     <div class="nav-container">
         <div class="nav-left nav-item">
-            <img src="../assets/vue.svg" alt="">
+            <img height="50px" src="../assets/logo.svg" alt="">
         </div>
         <div class="nav-center nav-item">
-            <div><router-link to="/">博客</router-link></div>
-            <div><router-link to="/">项目</router-link></div>
-            <div><router-link to="/">简历</router-link></div>
+            <div v-for="menu in menus"><router-link :to="menu.url">{{ menu.name }}</router-link></div>
         </div>
 
         <div class="nav-right nav-item">
@@ -24,8 +22,20 @@
 
 <script setup lang="ts">
 import { useNavStore } from '../stores/useNavStore'
+import { onMounted, reactive } from 'vue'
+import httpUtils from '../utils/httpUtils';
+import { Menu } from '../types'
 
 const navStore = useNavStore()
+const menus = reactive<Menu[]>([])
+
+onMounted(async () => {
+    // 查询菜单
+    const menuData = await httpUtils.get('/menu');
+    menuData.forEach((element: Menu) => {
+        menus.push(element)
+    });
+})
 
 </script>
 

@@ -5,6 +5,16 @@ interface Result {
     timestamp: number;
 }
 
+interface Menu {
+    id: number,
+    createTime: Date,
+    parentId: number,
+    name: string,
+    type: number,
+    url: string,
+    sort: number,
+}
+
 interface UserInfo {
     id: number,
     username: string,
@@ -12,4 +22,4 @@ interface UserInfo {
     token: string
 }
 
-export type { Result, UserInfo }
+export type { Result, UserInfo, Menu }

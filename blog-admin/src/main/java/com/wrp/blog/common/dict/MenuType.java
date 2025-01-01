@@ -1,5 +1,7 @@
 package com.wrp.blog.common.dict;
 
+import com.baomidou.mybatisplus.annotation.EnumValue;
+import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -14,6 +16,9 @@ public enum MenuType implements BaseEnum {
     CATALOG(1, "目录"),
     MENU(2, "菜单"),
     ;
+
+    @EnumValue
+    @JsonValue
     private final int code;
     private final String description;
 }

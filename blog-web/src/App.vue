@@ -10,7 +10,8 @@ import ArticleDetail from './views/ArticleDetail.vue';
   <div class="main-container">
     <div class="main-left"></div>
     <div class="main-center">
-      <ArticleDetail />
+      <!-- <ArticleDetail /> -->
+      <router-view></router-view>
     </div>
     <div class="main-right"></div>
   </div>

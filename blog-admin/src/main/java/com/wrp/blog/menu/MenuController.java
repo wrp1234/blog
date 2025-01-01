@@ -21,9 +21,9 @@ public class MenuController {
     private final MenuService menuService;
 
     @PostMapping
-    public Result<Long> add(@RequestBody @Validated MenuEntity menu) {
+    public Result<String> add(@RequestBody @Validated MenuEntity menu) {
         menuService.save(menu);
-        return ResultUtils.success(menu.getId());
+        return ResultUtils.success(menu.getId().toString());
     }
 
     @GetMapping
